@@ -115,7 +115,7 @@ To simplify the execution of `mprocs`, add an alias to your `.bashrc` file:
    ```
 
 ## Referancials
-Here can you found mprocs documentation
+Here you can find mprocs documentation
  ```bash
    https://github.com/pvolok/mprocs
  ```
