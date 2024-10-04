@@ -10,6 +10,11 @@ This guide will help you install, configure, and run `mprocs` on Windows Subsyst
 Make sure you have the following installed on your WSL environment:
 - **Git** for cloning the repository
 - **Rust** and **Cargo** for building `mprocs`
+- To be inside **wsl**:
+```bash
+   wsl -d (your VM)
+   su fourdds
+```
 
 ### Install Git
 
@@ -103,9 +108,16 @@ To simplify the execution of `mprocs`, add an alias to your `.bashrc` file:
    ```bash
    source ~/.bashrc
    ```
+
 5. Try:
    ```bash
       mprocs
    ```
+
+## Referancials
+Here can you found mprocs documentation
+ ```bash
+   https://github.com/pvolok/mprocs
+ ```
 
 
