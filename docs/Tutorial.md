@@ -106,7 +106,7 @@ source ws/setup.bash
 
 Si aprirà una finestra con l'ambiente di simulazione (Fig.1), dove è possibile visualizzare e interagire con droni, ostacoli e target.
 
-![Fig.1 – Ambiente di simulazione Gazebo Classic](#)
+![Fig.1 – Ambiente di simulazione Gazebo Classic](images/simulazione_GazeboClassic.png)
 
 #### **Tab 3: Avvio della logica dei droni con ROS2**
 
