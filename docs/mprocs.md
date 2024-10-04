@@ -90,7 +90,7 @@ To customize `mprocs`, create a configuration file in the `.config` directory:
        autostart: false
      PX4-SITL:
        shell: |
-         bash -c "cd /home/fourdds/ws && source setup.bash && cd && ./PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_multiple_run.sh -n 5"
+         bash -c "cd /home/fourdds/ws && source setup.bash && cd && ./PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_multiple_run.sh -n 5 -w find_targets"
        autostart: false
      ROS2:
        shell: |
@@ -112,7 +112,7 @@ To simplify the execution of `mprocs`, add an alias to your `.bashrc` file:
 
 2. Add this line to create an alias:
    ```bash
-   alias mprocs='mprocs --config ~/.config/mprocs/mprocs.yaml'
+   alias mprocs='/home/fourdds/mprocs/target/release/mprocs --config ~/.config/mprocs/mprocs.yaml'
    ```
 
 3. Save and exit the file (`Ctrl + O`, then `Enter`, and `Ctrl + X` to exit).
