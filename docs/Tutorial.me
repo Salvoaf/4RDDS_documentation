@@ -1,0 +1,108 @@
+
+# Tutorial per l'utente e lo sviluppatore della piattaforma 4DDS
+
+---
+
+## a) Tutorial per l'utente
+
+### Installazione di WSL2 su Windows 11
+
+Per utilizzare la piattaforma 4DDS, è necessario installare il Sottosistema Windows per Linux (WSL2), che consente di eseguire un ambiente Linux all'interno di Windows. Attualmente, l'ambiente Linux utilizzato è Ubuntu 22.04.
+
+**Passaggi per l'installazione:**
+
+1. **Aprire PowerShell come amministratore.**
+2. **Digitare il comando seguente:**
+
+   ```powershell
+   wsl --install
+   ```
+
+3. **Seguire le istruzioni sullo schermo.**
+
+Se avete dubbi o problemi durante l'installazione, consultate la [documentazione ufficiale di Microsoft](https://docs.microsoft.com/it-it/windows/wsl/install).
+
+### Importazione del disco virtuale 4DDS in WSL2
+
+Il disco virtuale 4DDS contiene tutti gli strumenti necessari per simulare uno sciame di droni:
+
+- **Gazebo Classic:** Simulatore 3D con l'ambiente di esplorazione, il modello fisico del drone e i target.
+- **PX4:** Autopilota che gestisce il controllo a basso livello del drone.
+- **ROS2:** Middleware per la comunicazione e il coordinamento dei droni.
+- **XRCE-DDS:** Software che permette la comunicazione tra PX4 e ROS2.
+
+**Procedura di importazione:**
+
+1. **Scaricare il file `4DDS.zip`.**
+2. **Estrarre il file `4DDS.tar` utilizzando un programma come 7zip.**
+3. **Aprire PowerShell e navigare nella cartella contenente `4DDS.tar`.**
+4. **Eseguire il comando:**
+
+   ```powershell
+   wsl --import 4DDS . 4DDS.tar
+   ```
+
+   Questo creerà un disco virtuale chiamato `ext4.vhdx` nella cartella corrente.
+
+5. **Eliminare `4DDS.tar` per risparmiare spazio, se lo desiderate.**
+
+### Accesso all'ambiente 4DDS
+
+Per accedere all'ambiente Linux di 4DDS:
+
+1. **Aprire PowerShell.**
+2. **Digitare:**
+
+   ```powershell
+   4DDS
+   ```
+
+3. **Cambiare utente a `fourdds`:**
+
+   ```bash
+   su fourdds
+   cd
+   ```
+
+   *Nota:* La password per l'utente `fourdds` è `4DDS1234`.
+
+### Installazione di Visual Studio Code
+
+Per modificare e gestire i file all'interno dell'ambiente 4DDS, è consigliato utilizzare Visual Studio Code con l'estensione per WSL.
+
+**Passaggi:**
+
+1. **Scaricare e installare [Visual Studio Code](https://code.visualstudio.com/).**
+2. **Seguire la [guida all'uso di Visual Studio Code con WSL](https://code.visualstudio.com/docs/remote/wsl).**
+3. **Impostare `/home/fourdds` come cartella di lavoro.**
+
+### Avvio di una simulazione di missione e acquisizione dei log
+
+Per lanciare una simulazione, aprire quattro schede (tab) nel terminale.
+
+#### **Tab 1: Avvio del broker XRCE-DDS**
+
+```bash
+MicroXRCEAgent udp4 –p 8888
+```
+
+Questo processo media la comunicazione tra PX4 e ROS2.
+
+#### **Tab 2: Avvio della simulazione con Gazebo**
+
+```bash
+source ws/setup.bash
+./PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_multiple_run.sh -n <numero_droni> -w find_targets
+```
+
+**Note:**
+
+- **Per chiudere Gazebo, premere `Ctrl-C` nella scheda in cui è stato lanciato.**
+- **Se rimangono processi attivi, eseguire:**
+
+  ```bash
+  killall -9 gzclient
+  killall -9 gzserver
+  ```
+
+Si aprirà una finestra con l'ambiente di simulazione (Fig.1), dove è possibile visualizzare e interagire con droni, ostacoli e target.
