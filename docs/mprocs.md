@@ -76,14 +76,27 @@ To customize `mprocs`, create a configuration file in the `.config` directory:
 
 2. Create the `mprocs.yaml` file:
    ```bash
-   nano ~/.config/mprocs/mprocs.yaml
+   gedit ~/.config/mprocs/mprocs.yaml
    ```
 
-3. Add this example configuration:
+3. Add this configuration:
    ```yaml
-   panes:
-     - command: ["htop"]
-     - command: ["tail", "-f", "/var/log/syslog"]
+   procs:
+     open mprocs.yaml:
+       shell: "gedit ~/.config/mprocs/mprocs.yaml"
+       autostart: false
+     MicroXRCEAgent:
+       shell: "cd && MicroXRCEAgent udp4 -p 8888"
+       autostart: false
+     PX4-SITL:
+       shell: |
+         bash -c "cd /home/fourdds/ws && source setup.bash && cd && ./PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_multiple_run.sh -n 5"
+       autostart: false
+     ROS2:
+       shell: |
+         bash -c "cd && cd ros2_ws && source setup.bash && bash run.sh -n 5"
+       autostart: false
+
    ```
 
 4. Save and close the file (`Ctrl + O`, then `Enter`, and `Ctrl + X` to exit).
