@@ -1,4 +1,4 @@
-# README - Guida per creare nuovi Worlds in Gazebo
+# Guida per creare nuovi Worlds in Gazebo
 
 Questa guida fornisce le istruzioni per creare e personalizzare i "worlds" in Gazebo, un simulatore 3D utilizzato nella piattaforma 4DDS.
 
