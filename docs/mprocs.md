@@ -94,7 +94,7 @@ To simplify the execution of `mprocs`, add an alias to your `.bashrc` file:
 
 2. Add this line to create an alias:
    ```bash
-   alias mprocs='~/mprocs/target/release/mprocs --config ~/.config/mprocs/mprocs.yaml'
+   alias mprocs='mprocs --config ~/.config/mprocs/mprocs.yaml'
    ```
 
 3. Save and exit the file (`Ctrl + O`, then `Enter`, and `Ctrl + X` to exit).
