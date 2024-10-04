@@ -103,43 +103,9 @@ To simplify the execution of `mprocs`, add an alias to your `.bashrc` file:
    ```bash
    source ~/.bashrc
    ```
+5. Try:
+   ```bash
+      mprocs
+   ```
 
-## Step 6: Run `mprocs` using the alias
 
-Now you can run `mprocs` with your custom configuration by simply typing:
-```bash
-mprocs
-```
-
-## Updating `mprocs`
-
-To update `mprocs` to the latest version, run the following commands:
-```bash
-cd ~/mprocs
-git pull
-cd src
-cargo build --release
-```
-
-## Troubleshooting
-
-### Virtual Manifest Error
-If you encounter the "found a virtual manifest" error, ensure you are in the correct directory (`src`) when building:
-```bash
-cd src
-cargo build --release
-```
-
-### Rust or Cargo Not Found
-If Rust or Cargo are not recognized after installation, ensure the environment is sourced correctly:
-```bash
-source $HOME/.cargo/env
-```
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## Contributions
-
-Feel free to open issues or submit pull requests to improve this guide or enhance the project.
