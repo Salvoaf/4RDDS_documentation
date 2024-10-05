@@ -96,7 +96,10 @@ To customize `mprocs`, create a configuration file in the `.config` directory:
        shell: |
          bash -c "cd && cd ros2_ws && source setup.bash && bash run.sh -n 5"
        autostart: false
-
+     log recorder:
+       shell: |
+         bash -c "cd && cd ros2_ws && source setup.bash && bash register.sh"
+       autostart: false
    ```
 
 4. Save and close the file (`Ctrl + O`, then `Enter`, and `Ctrl + X` to exit).
