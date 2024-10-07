@@ -98,8 +98,13 @@ To customize `mprocs`, create a configuration file in the `.config` directory:
        autostart: false
      log recorder:
        shell: |
-         bash -c "cd && cd ros2_ws && source setup.bash && bash register.sh"
+         bash -c "cd && cd ros2_ws && source setup.bash && bash register.bash"
        autostart: false
+     log_to_csv:
+       shell: |
+         bash -c "cd && cd ros2_ws && source setup.bash && ros2 run analysis ConvertToCSV $(ls log_*/log_*_0.db3) && rm -rf log_*"
+       autostart: false
+
    ```
 
 4. Save and close the file (`Ctrl + O`, then `Enter`, and `Ctrl + X` to exit).
