@@ -220,11 +220,148 @@ Incolla il codice sopra [qui](https://www.plantuml.com/)
 
    - Modifiche per gestire il LIDAR e la telecamera dinamicamente, utilizzando più sensori dello stesso tipo.
 
-### Modifiche a PX4
+### PX4
 
-- **Quadricottero Iris**: Aggiunto LIDAR orizzontale e camera rivolta verso il basso.
-- **Rover**: Riscalato.
-- **BlueROV2**: Aggiunto sensore IMU e template per spawn multi-drone.
+#### Droni
+
+##### **Quadricottero Iris**
+- **Percorso file**: `/home/fourdds/PX4-Autopilot/Tools/simulation/gazebo-classic/sitl-gazebo_classic/models/iris/iris.sdf.jinja`
+
+###### **Sensori**
+1. **IMU (Inertial Measurement Unit)**: 
+   - Misura l'accelerazione e la rotazione del drone.
+   - Configurato tramite il plugin `libgazebo_imu_plugin.so`.
+
+2. **LiDAR**: 
+   - Scanner laser per la mappatura e rilevamento ostacoli.
+   - Definito tramite il modello `4dds_rplidar`.
+
+3. **Fotocamera FPV (First-Person View)**: 
+   - Utilizzata per la visione in prima persona.
+   - Definita tramite il modello `fpv_cam`.
+
+4. **GPS**: 
+   - Utilizzato per ottenere la posizione locale del drone.
+   - Definito tramite il modello GPS incluso.
+
+5. **Magnetometro**: 
+   - Misura il campo magnetico per determinare l'orientamento rispetto al campo magnetico terrestre.
+   - Configurato tramite il plugin `libgazebo_magnetometer_plugin.so`.
+
+6. **Barometro**: 
+   - Misura la pressione atmosferica per stimare l'altitudine.
+   - Configurato tramite il plugin `libgazebo_barometer_plugin.so`.
+
+###### **Attuatori**
+1. **Rotor_0**: 
+   - Uno dei quattro rotori principali per il volo.
+   - Controllato tramite giunto `revolute` e il plugin `libgazebo_motor_model.so`.
+
+2. **Rotor_1**: 
+   - Simile a Rotor_0, controllato da un giunto `revolute` e plugin.
+
+3. **Rotor_2**: 
+   - Simile a Rotor_0, ma con direzione di rotazione opposta (CW).
+
+4. **Rotor_3**: 
+   - Simile a Rotor_2, controllato da giunto e plugin.
+
+Ogni rotore ha un controllo di velocità e direzione tramite i relativi plugin.
+
+---
+
+##### **Rover**
+- **Percorso file**: `/home/fourdds/PX4-Autopilot/Tools/simulation/gazebo-classic/sitl-gazebo_classic/models/rover/rover.sdf.jinja`
+
+###### **Sensori**
+1. **IMU (Inertial Measurement Unit)**: 
+   - Misura l'accelerazione e la rotazione del rover.
+   - Configurato tramite il plugin `libgazebo_imu_plugin.so`.
+
+2. **LiDAR**: 
+   - Scanner laser per la mappatura e rilevamento ostacoli.
+   - Definito tramite il modello `4dds_rplidar`.
+
+3. **GPS**: 
+   - Utilizzato per ottenere la posizione locale del rover.
+   - Definito tramite il modello GPS incluso.
+
+4. **Magnetometro**: 
+   - Misura il campo magnetico per determinare l'orientamento rispetto al campo magnetico terrestre.
+   - Configurato tramite il plugin `libgazebo_magnetometer_plugin.so`.
+
+5. **Barometro**: 
+   - Misura la pressione atmosferica per stimare l'altitudine.
+   - Configurato tramite il plugin `libgazebo_barometer_plugin.so`.
+
+###### **Attuatori**
+1. **Ruota anteriore sinistra**: 
+   - Controllata tramite giunto `revolute`, definita come `front_left_wheel_joint`.
+   - Controllo di posizione tramite `front_left_steering_joint`.
+
+2. **Ruota anteriore destra**: 
+   - Controllata tramite giunto `revolute`, definita come `front_right_wheel_joint`.
+   - Controllo di posizione tramite `front_right_steering_joint`.
+
+3. **Ruota posteriore sinistra**: 
+   - Controllata tramite giunto `revolute`, definita come `rear_left_wheel_joint`.
+   - Controllo di velocità tramite `rear_left_wheel_drive`.
+
+4. **Ruota posteriore destra**: 
+   - Controllata tramite giunto `revolute`, definita come `rear_right_wheel_joint`.
+   - Controllo di velocità tramite `rear_right_wheel_drive`.
+
+Ogni ruota è controllata tramite giunti con parametri specifici per il movimento e la direzione del rover.
+
+---
+
+##### **BlueROV2**
+- **Percorso file**: `/home/fourdds/PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_gazebo-classic/models/uuv_bluerov2_heavy/uuv_bluerov2_heavy.sdf.jinja`
+
+###### **Sensori**
+1. **IMU (Inertial Measurement Unit)**: 
+   - Misura l'accelerazione e la rotazione del drone.
+   - Configurato tramite il plugin `gazebo_imu_plugin`.
+
+2. **GPS**: 
+   - Utilizzato per ottenere la posizione locale.
+   - Definito tramite l'inclusione del modello GPS.
+
+3. **Magnetometro**: 
+   - Misura il campo magnetico per determinare l'orientamento rispetto al campo magnetico terrestre.
+   - Configurato tramite il plugin `magnetometer_plugin`.
+
+4. **Barometro**: 
+   - Misura la pressione atmosferica per stimare l'altitudine.
+   - Configurato tramite il plugin `barometer_plugin`.
+
+###### **Attuatori**
+1. **Thruster1**: 
+   - Propulsore per generare movimento.
+   - Controllato tramite giunto `revolute` e il plugin `libgazebo_motor_model.so`.
+
+2. **Thruster2**: 
+   - Stesso setup di Thruster1 con controllo del movimento.
+
+3. **Thruster3**: 
+   - Simile agli altri thruster, controllato da un giunto `revolute` e plugin.
+
+4. **Thruster4**: 
+   - Anche questo è un propulsore controllato da giunto e plugin.
+
+5. **Thruster5**: 
+   - Propulsore con giunto `revolute` e plugin di controllo motore.
+
+6. **Thruster6**: 
+   - Stesso setup con giunto e controllo del motore.
+
+7. **Thruster7**: 
+   - Controllato da un giunto `revolute` e plugin per il controllo della velocità.
+
+8. **Thruster8**: 
+   - Ultimo thruster con configurazione simile agli altri, controllato da giunto e plugin.
+
+
 - **Moduli di controllo**: Modifiche per accettare setpoint di velocità in coordinate NED.
 
 **Importante**: Non utilizzare `make distclean` in PX4-Autopilot, altrimenti tutte le modifiche andranno perse.
