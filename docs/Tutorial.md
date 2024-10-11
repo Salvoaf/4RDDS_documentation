@@ -179,7 +179,11 @@ Px4 -> Drone : vehicleNamespace + "_camera/camera/image_raw/compressed" @ NULL :
 @enduml
 ```
 Incolla il codice sopra [qui](https://www.plantuml.com/)
-
+**legenda:**
+```
+-topic @ stato attuale : funziona da dove parte la ricezione o l'invio del topic
+-topic @ stato attuale -> stato successibo : funziona da dove parte la ricezione o l'invio del topic
+```
 2. **Ciclo di Target Detection**: C'è un'altra iterazione del drone che si ripete ogni 750 ms. Questo ciclo parte chiamando la funzione `targetDetection()`, che avvia il processo descritto dal nuovo diagramma.
 
 - Il modulo TargetDetection si sottoscrive al topic per ricevere le immagini.
