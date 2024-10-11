@@ -156,10 +156,16 @@ Nella nuova architettura:
 
 ### Diagramma di interazione del drone 
 
-
 Il diagramma di interazione del drone rappresenta due cicli principali:
 
+**legenda:**
+```
+-topic @ stato attuale : funziona da dove parte la ricezione o l'invio del topic
+-topic @ stato attuale -> stato successibo : funziona da dove parte la ricezione o l'invio del topic
+```
+
 1. **Ciclo di Bootstrap**: Questo ciclo si ripete ogni 'options.controllerTimerMs' millisecondi e parte chiamando la funzione `bootstrap()`. Il suo scopo è gestire il controllo offboard, l'armamento e il movimento del drone.
+
 
 ```plantuml
 @startuml
@@ -178,12 +184,8 @@ Drone -> Base_Station: /swarm/geopings @ Armed : End sendGeoPing()
 Px4 -> Drone : vehicleNamespace + "_camera/camera/image_raw/compressed" @ NULL : tick() # drone acquisisce l'immagine che viene elaborata
 @enduml
 ```
-Incolla il codice sopra [qui](https://www.plantuml.com/)
-**legenda:**
-```
--topic @ stato attuale : funziona da dove parte la ricezione o l'invio del topic
--topic @ stato attuale -> stato successibo : funziona da dove parte la ricezione o l'invio del topic
-```
+Incolla il codice sopra [qui](https://www.plantuml.com/).
+
 2. **Ciclo di Target Detection**: C'è un'altra iterazione del drone che si ripete ogni 750 ms. Questo ciclo parte chiamando la funzione `targetDetection()`, che avvia il processo descritto dal nuovo diagramma.
 
 - Il modulo TargetDetection si sottoscrive al topic per ricevere le immagini.
