@@ -154,7 +154,8 @@ Nella nuova architettura:
 ---
 
 
-### Diagramma di interazione del drone
+### Diagramma di interazione del drone 
+
 
 Il diagramma di interazione del drone rappresenta due cicli principali:
 
@@ -177,6 +178,7 @@ Drone -> Base_Station: /swarm/geopings @ Armed : End sendGeoPing()
 Px4 -> Drone : vehicleNamespace + "_camera/camera/image_raw/compressed" @ NULL : tick() # drone acquisisce l'immagine che viene elaborata
 @enduml
 ```
+Incolla il codice sopra [qui](https://www.plantuml.com/)
 
 2. **Ciclo di Target Detection**: C'è un'altra iterazione del drone che si ripete ogni 750 ms. Questo ciclo parte chiamando la funzione `targetDetection()`, che avvia il processo descritto dal nuovo diagramma.
 
@@ -189,6 +191,7 @@ Px4 -> Drone : vehicleNamespace + "_camera/camera/image_raw/compressed" @ NULL :
 Px4 -> Drone : vehicleNamespace + "_camera/camera/image_raw/compressed" @ NULL : tick() # drone acquisisce l'immagine che viene elaborata
 @enduml
 ```
+Incolla il codice sopra [qui](https://www.plantuml.com/)
 
 ## b) Tutorial per lo sviluppatore
 
