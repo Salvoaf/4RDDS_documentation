@@ -194,7 +194,9 @@ Incolla il codice sopra [qui](https://www.plantuml.com/).
 
 ```plantuml
 @startuml
-Px4 -> Drone : vehicleNamespace + "_camera/camera/image_raw/compressed" @ NULL : tick() # drone acquisisce l'immagine che viene elaborata
+@startuml
+Px4 -> Drone : vehicleNamespace + "_camera/camera/image_raw/compressed" @ NULL : tick() # Px4 invia continuamente al drone le immagini acquisite dal sensore con tick() processa l'ultima per la detection
+@enduml
 @enduml
 ```
 Incolla il codice sopra [qui](https://www.plantuml.com/)
