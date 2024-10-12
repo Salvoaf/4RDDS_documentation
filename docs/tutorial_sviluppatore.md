@@ -4,7 +4,10 @@
 2. [PX4](#px4)
 3. [ROS2](#ros2)
 4. [Gazebo](#gazebo)
-5. [Problemi comuni](#problemi-comuni)
+   - [Droni casuali](#droni-casuali)
+   - [Guida per Estendere Gazebo con Sensori Dinamici](#sensori-dinamici)
+   - [Guida per creare nuovi Worlds in Gazebo](#new-world)
+6. [Problemi comuni](#problemi-comuni)
  
 ## Componenti principali dell'ambiente 4DDS
 
@@ -264,44 +267,20 @@ ROS2 si occupa della logica di un singolo drone e di altri agenti autonomi, come
   ```
 
 ## Gazebo
+### Droni casuali
+#### **Modifica dello Script di Lancio per Droni Casuali [Done]**
+- **Obiettivo**: Aggiungere il lancio di droni in posizioni casuali attorno all'origine della simulazione.
+- **Cosa fare**: Modifica il file di lancio della simulazione, `sitl_multiple_run.sh`, aggiungendo codice per generare posizioni casuali.
+  - **Percorso del file**: `/home/fourdds/PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_multiple_run.sh`.
+  - **Modifica suggerita**: Aggiungi una funzione per generare coordinate casuali e passa queste coordinate ai droni durante il lancio.
+  
+### [Guida per Estendere Gazebo con Sensori Dinamici](gazebo/sensori_dinamici.md)
 
-Le modifiche apportate a Gazebo riguardano principalmente il lancio delle simulazioni e la gestione dinamica dei sensori sui veicoli. Le principali modifiche includono:
+Questa guida ti aiuterà a estendere le funzionalità di Gazebo per gestire dinamicamente i sensori sui droni. Le modifiche descritte sono basate su esperienze reali e generalizzate per poter essere replicate su progetti simili.
 
-### **Modifica dello script di lancio**
-- Il file modificato si trova in: `/home/fourdds/PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_multiple_run.sh`.
-- È stato aggiunto il **random spawn** dei droni in posizioni casuali attorno all'origine della simulazione.
+### [Guida per creare nuovi Worlds in Gazebo](gazebo/new_world.md)
 
-### **Modifica del plugin per LIDAR e telecamera**
-- Le modifiche sono state fatte per gestire dinamicamente il **spawn di veicoli** con uno o più sensori dello stesso tipo, pubblicando su topic differenti per distinguere semanticamente i sensori nella logica ROS2 dei droni.
-- I file modificati si trovano in: `/home/fourdds/ws/gazebo_plugins/src` e fanno parte dei **gazebo-ros-pkgs**.
-
-### **Modifica al plugin del LIDAR**
-- Le modifiche al plugin del LIDAR riguardano l'aggiunta della gestione di più LIDAR per veicolo, ciascuno pubblicato su un topic differente.
-- È stato modificato il file: `/home/fourdds/ws/gazebo_plugins/src/gazebo_ros_ray_sensor.cpp`.
-  - Nella funzione `::Load()` è stato inserito un controllo per la presenza del tag `<px4/>` nella specifica SDF del sensore LIDAR.
-  - Questo permette al plugin di riconoscere la fine dei sensori LIDAR per un veicolo e di incrementare una variabile ID per distinguere i topic di ogni LIDAR.
-  - Ad esempio:
-    - Il **primo LIDAR** potrebbe essere utilizzato per l'obstacle avoidance e pubblicare su un topic `px4_X/rplidar`.
-    - Il **secondo LIDAR** potrebbe puntare verso il basso e pubblicare su un topic `px4_X/downlidar`.
-
-### **Estensione a nuovi sensori**
-- Se si decide di aggiungere nuovi sensori, è necessario individuare i plugin appropriati per simularli e apportare le stesse modifiche fatte al plugin del LIDAR per gestirli.
-
-### **Compilazione delle modifiche**
-- Dopo aver apportato modifiche ai plugin di Gazebo nella directory `/home/fourdds/ws`, è necessario ricompilare il codice con:
-  ```bash
-  colcon build --symlink-install
-  ```
-- Successivamente, fare il sourcing con:
-  ```bash
-  source setup.bash
-  ```
-
-### **Risoluzione dei problemi di spawn**
-- Se ci sono problemi con il caricamento dei sensori durante lo spawn della simulazione (indicati da errori rossi nell'output), molto probabilmente:
-  1. Non è stato fatto correttamente il sourcing dei **gazebo-ros-pkgs**.
-  2. C'è un errore nel codice introdotto per gestire lo **spawn dinamico dei sensori**.
-
+Questa guida fornisce le istruzioni per creare e personalizzare i "worlds" in Gazebo, un simulatore 3D utilizzato nella piattaforma 4DDS.
 
 ## Problemi comuni
 
