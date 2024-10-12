@@ -1,7 +1,6 @@
+#Tutorial per lo sviluppatore
 
-##Tutorial per lo sviluppatore
-
-### Componenti principali dell'ambiente 4DDS
+## Componenti principali dell'ambiente 4DDS
 
 1. **PX4**: Autopilota dei droni. Modificato per aggiungere sensori mancanti e accettare setpoint di velocità in coordinate NED.
 
@@ -20,14 +19,14 @@
 
    - Modifiche per gestire il LIDAR e la telecamera dinamicamente, utilizzando più sensori dello stesso tipo.
 
-### PX4
+## PX4
 
-#### Droni
+### Droni
 
-##### **Quadricottero Iris**
+#### **Quadricottero Iris**
 - **Percorso file**: `/home/fourdds/PX4-Autopilot/Tools/simulation/gazebo-classic/sitl-gazebo_classic/models/iris/iris.sdf.jinja`
 
-###### **Sensori**
+##### **Sensori**
 1. **IMU (Inertial Measurement Unit)**: 
    - Misura l'accelerazione e la rotazione del drone.
    - Configurato tramite il plugin `libgazebo_imu_plugin.so`.
@@ -52,7 +51,7 @@
    - Misura la pressione atmosferica per stimare l'altitudine.
    - Configurato tramite il plugin `libgazebo_barometer_plugin.so`.
 
-###### **Attuatori**
+##### **Attuatori**
 1. **Rotor_0**: 
    - Uno dei quattro rotori principali per il volo.
    - Controllato tramite giunto `revolute` e il plugin `libgazebo_motor_model.so`.
@@ -70,10 +69,10 @@ Ogni rotore ha un controllo di velocità e direzione tramite i relativi plugin.
 
 ---
 
-##### **Rover**
+#### **Rover**
 - **Percorso file**: `/home/fourdds/PX4-Autopilot/Tools/simulation/gazebo-classic/sitl-gazebo_classic/models/rover/rover.sdf.jinja`
 
-###### **Sensori**
+##### **Sensori**
 1. **IMU (Inertial Measurement Unit)**: 
    - Misura l'accelerazione e la rotazione del rover.
    - Configurato tramite il plugin `libgazebo_imu_plugin.so`.
@@ -94,7 +93,7 @@ Ogni rotore ha un controllo di velocità e direzione tramite i relativi plugin.
    - Misura la pressione atmosferica per stimare l'altitudine.
    - Configurato tramite il plugin `libgazebo_barometer_plugin.so`.
 
-###### **Attuatori**
+##### **Attuatori**
 1. **Ruota anteriore sinistra**: 
    - Controllata tramite giunto `revolute`, definita come `front_left_wheel_joint`.
    - Controllo di posizione tramite `front_left_steering_joint`.
@@ -115,10 +114,10 @@ Ogni ruota è controllata tramite giunti con parametri specifici per il moviment
 
 ---
 
-##### **BlueROV2**
+#### **BlueROV2**
 - **Percorso file**: `/home/fourdds/PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_gazebo-classic/models/uuv_bluerov2_heavy/uuv_bluerov2_heavy.sdf.jinja`
 
-###### **Sensori**
+##### **Sensori**
 1. **IMU (Inertial Measurement Unit)**: 
    - Misura l'accelerazione e la rotazione del drone.
    - Configurato tramite il plugin `gazebo_imu_plugin`.
@@ -135,7 +134,7 @@ Ogni ruota è controllata tramite giunti con parametri specifici per il moviment
    - Misura la pressione atmosferica per stimare l'altitudine.
    - Configurato tramite il plugin `barometer_plugin`.
 
-###### **Attuatori**
+##### **Attuatori**
 1. **Thruster1**: 
    - Propulsore per generare movimento.
    - Controllato tramite giunto `revolute` e il plugin `libgazebo_motor_model.so`.
@@ -167,9 +166,9 @@ Ogni ruota è controllata tramite giunti con parametri specifici per il moviment
 **Importante**: Non utilizzare `make distclean` in PX4-Autopilot, altrimenti tutte le modifiche andranno perse.
 
 
-#### Modifiche ai moduli di controllo per Rover e BlueROV2
+### Modifiche ai moduli di controllo per Rover e BlueROV2
 
-##### **Rover**
+#### **Rover**
 - **Percorso file**: `/home/fourdds/PX4-Autopilot/src/modules/rover_pos_control/RoverPositionControl.cpp`
 
 Il modulo di controllo per il rover è stato modificato per accettare setpoint di velocità in coordinate NED (North-East-Down), mentre in precedenza accettava solo coordinate relative al corpo del veicolo. Questo miglioramento consente un controllo più preciso e intuitivo rispetto al movimento globale del rover.
@@ -177,7 +176,7 @@ Il modulo di controllo per il rover è stato modificato per accettare setpoint d
 - **Funzione coinvolta**: `control_velocity`  
   Questa funzione è stata aggiornata per gestire i setpoint di velocità NED, migliorando la capacità del rover di muoversi nello spazio in base a coordinate geografiche piuttosto che in base al suo sistema di riferimento locale.
 
-##### **BlueROV2**
+#### **BlueROV2**
 - **Percorso file controllo dell'attitudine (roll, pitch, yaw)**: `/home/fourdds/PX4-Autopilot/src/modules/uuv_att_control/uuv_att_control.cpp`
 - **Percorso file controllo della velocità e profondità**: `/home/fourdds/PX4-Autopilot/src/modules/uuv_pos_control/uuv_pos_control.cpp`
 
@@ -194,7 +193,7 @@ Il modulo di controllo della velocità e della profondità per il BlueROV2 è st
 
 Queste modifiche complessive ai moduli di controllo migliorano la capacità del rover di operare in ambienti terrestri e del BlueROV2 di operare in ambienti subacquei, consentendo movimenti più fluidi e precisi attraverso l'uso delle coordinate NED come riferimento.
 
-### ROS2
+## ROS2
 
 ROS2 si occupa della logica di un singolo drone e di altri agenti autonomi, come la base station, rendendo il codice il più modulare possibile. I package ROS2 presenti in `/home/fourdds/ros2_ws/src` che contengono logiche già pronte sono i seguenti:
 
@@ -209,7 +208,7 @@ ROS2 si occupa della logica di un singolo drone e di altri agenti autonomi, come
 - **analysis:** Contiene strumenti per l'analisi dei dati (es. `PathView.py`).
 
 
-#### **drone**
+### **drone**
 - All’interno del package `drone` si trova la logica di un singolo drone (classe **Drone**). 
 - Attualmente si occupa delle seguenti operazioni:
   - Ingresso in modalità offboard
@@ -217,33 +216,33 @@ ROS2 si occupa della logica di un singolo drone e di altri agenti autonomi, come
   - Decollo (**takeoff**)
   - Flocking
 
-#### **base_station**
+### **base_station**
 - Contiene la logica della **BaseStation**, che coordina il flocking mandando i vettori di coesione, separazione e allineamento ai droni.
 - I droni comunicano la loro posizione attraverso messaggi **GeoPing**.
 - La classe **BaseStation** è un nodo ROS2 indipendente e deve essere lanciata autonomamente come i nodi dei droni.
 
-#### **obstacle_avoidance**
+### **obstacle_avoidance**
 - Contiene una classe utilizzata da ogni istanza della classe **Drone**.
 - La classe **Drone** invoca il metodo `tick()` quando controlla la presenza di ostacoli.
 - Il modulo di avoidance restituisce un vettore da seguire per evitare eventuali ostacoli.
 
-#### **target_detection**
+### **target_detection**
 - Contiene la logica per la **detection dei target**.
 - Attualmente utilizza la **Hough Transform** per rilevare sfere rosse individuate dalla telecamera.
 - Il modulo ritorna il numero di target trovati alla posizione attuale e viene invocato tramite il metodo `tick()`, consentendo alla classe **Drone** di decidere quando rilevare i target.
 
-#### **parameters**
+### **parameters**
 - Contiene la classe **Parameters**, caricata all'avvio di un nodo **Drone** o **BaseStation**.
 - I parametri vengono letti da un file YAML situato in `/home/fourdds/.swarm/options.yaml`.
 - I parametri riguardano vari aspetti della simulazione, come:
   - Velocità massima dei droni
   - Raggio massimo per l'obstacle avoidance
 
-#### **fdds_messages**
+### **fdds_messages**
 - Questo package non contiene codice, ma solo le definizioni dei messaggi **GeoPing** e **Flocking**, utilizzati dai droni e dalla base station per il coordinamento durante il flocking.
 - Le definizioni dei messaggi si trovano nella cartella `msg`.
 
-#### **analysis**
+### **analysis**
 - In questo package si trova lo scheletro di un programma Python (**PathView.py**) utile per fare il parsing dei file **sqlite3** generati con **ros2 bag**.
 - **ros2 bag** registra i dati di determinati topic durante la simulazione, consentendo post-processing successivo.
 - Attualmente, **PathView.py** mostra le traiettorie di 5 droni durante una simulazione di flocking, evidenziando con delle X le posizioni GPS in cui i droni rilevano dei target.
@@ -258,19 +257,19 @@ ROS2 si occupa della logica di un singolo drone e di altri agenti autonomi, come
   colcon build --packages-select <package_modificato>
   ```
 
-### Gazebo
+## Gazebo
 
 Le modifiche apportate a Gazebo riguardano principalmente il lancio delle simulazioni e la gestione dinamica dei sensori sui veicoli. Le principali modifiche includono:
 
-#### **Modifica dello script di lancio**
+### **Modifica dello script di lancio**
 - Il file modificato si trova in: `/home/fourdds/PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_multiple_run.sh`.
 - È stato aggiunto il **random spawn** dei droni in posizioni casuali attorno all'origine della simulazione.
 
-#### **Modifica del plugin per LIDAR e telecamera**
+### **Modifica del plugin per LIDAR e telecamera**
 - Le modifiche sono state fatte per gestire dinamicamente il **spawn di veicoli** con uno o più sensori dello stesso tipo, pubblicando su topic differenti per distinguere semanticamente i sensori nella logica ROS2 dei droni.
 - I file modificati si trovano in: `/home/fourdds/ws/gazebo_plugins/src` e fanno parte dei **gazebo-ros-pkgs**.
 
-#### **Modifica al plugin del LIDAR**
+### **Modifica al plugin del LIDAR**
 - Le modifiche al plugin del LIDAR riguardano l'aggiunta della gestione di più LIDAR per veicolo, ciascuno pubblicato su un topic differente.
 - È stato modificato il file: `/home/fourdds/ws/gazebo_plugins/src/gazebo_ros_ray_sensor.cpp`.
   - Nella funzione `::Load()` è stato inserito un controllo per la presenza del tag `<px4/>` nella specifica SDF del sensore LIDAR.
@@ -279,10 +278,10 @@ Le modifiche apportate a Gazebo riguardano principalmente il lancio delle simula
     - Il **primo LIDAR** potrebbe essere utilizzato per l'obstacle avoidance e pubblicare su un topic `px4_X/rplidar`.
     - Il **secondo LIDAR** potrebbe puntare verso il basso e pubblicare su un topic `px4_X/downlidar`.
 
-#### **Estensione a nuovi sensori**
+### **Estensione a nuovi sensori**
 - Se si decide di aggiungere nuovi sensori, è necessario individuare i plugin appropriati per simularli e apportare le stesse modifiche fatte al plugin del LIDAR per gestirli.
 
-#### **Compilazione delle modifiche**
+### **Compilazione delle modifiche**
 - Dopo aver apportato modifiche ai plugin di Gazebo nella directory `/home/fourdds/ws`, è necessario ricompilare il codice con:
   ```bash
   colcon build --symlink-install
@@ -292,13 +291,13 @@ Le modifiche apportate a Gazebo riguardano principalmente il lancio delle simula
   source setup.bash
   ```
 
-#### **Risoluzione dei problemi di spawn**
+### **Risoluzione dei problemi di spawn**
 - Se ci sono problemi con il caricamento dei sensori durante lo spawn della simulazione (indicati da errori rossi nell'output), molto probabilmente:
   1. Non è stato fatto correttamente il sourcing dei **gazebo-ros-pkgs**.
   2. C'è un errore nel codice introdotto per gestire lo **spawn dinamico dei sensori**.
 
 
-### Problemi comuni
+## Problemi comuni
 
 - **Se i sensori non vengono caricati correttamente:**
 
