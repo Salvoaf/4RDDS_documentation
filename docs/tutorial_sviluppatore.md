@@ -1,5 +1,23 @@
 # Tutorial per lo sviluppatore
-
+## Indice dei contenuti
+1. [Componenti principali dell'ambiente 4DDS](#componenti-principali-dellambiente-4dds)
+2. [PX4](#px4)
+   - [Droni](#droni)
+     - [Quadricottero Iris](#quadricottero-iris)
+     - [Rover](#rover)
+     - [BlueROV2](#bluerov2)
+3. [Modifiche ai moduli di controllo](#modifiche-ai-moduli-di-controllo)
+   - [Rover](#rover-1)
+   - [BlueROV2](#bluerov2-1)
+4. [ROS2](#ros2)
+5. [Gazebo](#gazebo)
+   - [Modifica dello script di lancio](#modifica-dello-script-di-lancio)
+   - [Modifica del plugin per LIDAR e telecamera](#modifica-del-plugin-per-lidar-e-telecamera)
+   - [Modifica al plugin del LIDAR](#modifica-al-plugin-del-lidar)
+   - [Estensione a nuovi sensori](#estensione-a-nuovi-sensori)
+   - [Compilazione delle modifiche](#compilazione-delle-modifiche)
+6. [Problemi comuni](#problemi-comuni)
+7. 
 ## Componenti principali dell'ambiente 4DDS
 
 1. **PX4**: Autopilota dei droni. Modificato per aggiungere sensori mancanti e accettare setpoint di velocità in coordinate NED.
