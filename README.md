@@ -1,6 +1,8 @@
 # 4RDDS_documentation
 
 # Index
+- [Installazione](docs/installazione.md)
+- [Lanciare simulazione](docs/run.md)
 - [mprocs](docs/mprocs.md)
 - [Tutorial](docs/Tutorial.md)
   - [Guida per l'utente](docs/tutorial_utente.md)
