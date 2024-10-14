@@ -5,8 +5,8 @@
 3. [ROS2](#ros2)
 4. [Gazebo](#gazebo)
    - [Droni casuali](#droni-casuali)
-   - [Guida per Estendere Gazebo con Sensori Dinamici](#sensori-dinamici)
-   - [Guida per creare nuovi Worlds in Gazebo](#new-world)
+   - [Guida per Estendere Gazebo con Sensori Dinamici](#guida-per-estendere-gazebo-con-ensori-dinamici)
+   - [Guida per creare nuovi Worlds in Gazebo](#guida-per-creare-nuovi-worlds-in-gazebo)
 6. [Problemi comuni](#problemi-comuni)
  
 ## Componenti principali dell'ambiente 4DDS
