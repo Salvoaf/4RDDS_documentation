@@ -1,5 +1,5 @@
 ### Diagramma di interazione del drone 
-`/home/fourdds/ros2_ws/src/drone/src/Drone.cpp`
+path = `/home/fourdds/ros2_ws/src/drone/src/Drone.cpp`
 
 Il diagramma di interazione del drone rappresenta due cicli principali:
 
