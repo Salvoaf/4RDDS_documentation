@@ -4,7 +4,7 @@
 - [Installazione](docs/installazione.md)
 - [Lanciare simulazione](docs/run.md)
 - [Comunicazioni tra i moduli](docs/comunication.md)
-- [Guida per lo sviluppatore](docs/tutorial_sviluppatore.md)
+- [Guida per lo sviluppatore](docs/developer/tutorial_sviluppatore.md)
 - [mprocs](docs/mprocs.md)
 
 ## References
