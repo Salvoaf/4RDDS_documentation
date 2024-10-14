@@ -25,7 +25,7 @@
 ### Droni Testati
 Clicca sul nome dei droni per avere una panormaica più chiara delle loro caratteristiche.
 #### Droni Aerei
-   - [Iris](px4/Droni/Aria/iris.md)
+   - [Iris](px4/Droni/Aria/Iris.md)
 #### Droni Terrestri
    - [Rover](px4/Droni/Terra/Rover.md)
 #### Droni Acquatici
