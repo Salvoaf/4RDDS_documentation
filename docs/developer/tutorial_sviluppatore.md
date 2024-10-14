@@ -16,15 +16,6 @@
 
 2. **ROS2**: Middleware per il controllo offboard e la logica di alto livello del drone.
 
-   - Package principali:
-     - `drone`: logica di un singolo drone.
-     - `base_station`: coordina il flocking.
-     - `obstacle_avoidance`: gestione degli ostacoli.
-     - `target_detection`: rilevamento dei target tramite Hough Transform.
-     - `parameters`: lettura parametri da file YAML.
-     - `fdds_messages`: definizioni dei messaggi GeoPing e Flocking.
-     - `analysis`: analisi dei log tramite `PathView.py`.
-
 3. **Gazebo Classic**: Versione vecchia di Gazebo, integrata con PX4 per le simulazioni multi-drone e marine.
 
    - Modifiche per gestire il LIDAR e la telecamera dinamicamente, utilizzando più sensori dello stesso tipo.
@@ -32,7 +23,7 @@
 ## PX4
 
 ### Droni Testati
-Clicca sul nome dei droni per avere una panormaica più chiara delle loro caratteristiche
+Clicca sul nome dei droni per avere una panormaica più chiara delle loro caratteristiche.
 #### Droni Aerei
    - [Iris](px4/Droni/Aria/iris.md)
 #### Droni Terrestri
