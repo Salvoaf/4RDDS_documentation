@@ -2,12 +2,13 @@
 ## Indice dei contenuti
 1. [Componenti principali dell'ambiente 4DDS](#componenti-principali-dellambiente-4dds)
 2. [PX4](#px4)
+   -[Droni Testati](#droni-testati)
 3. [ROS2](#ros2)
 4. [Gazebo](#gazebo)
    - [Droni casuali](#droni-casuali)
    - [Guida per Estendere Gazebo con Sensori Dinamici](#guida-per-estendere-gazebo-con-sensori-dinamici)
    - [Guida per creare nuovi Worlds in Gazebo](#guida-per-creare-nuovi-worlds-in-gazebo)
-6. [Problemi comuni](#problemi-comuni)
+5. [Problemi comuni](#problemi-comuni)
  
 ## Componenti principali dell'ambiente 4DDS
 
@@ -31,9 +32,13 @@
 ## PX4
 
 ### Droni Testati
-
-
-
+Clicca sul nome dei droni per avere una panormaica più chiara delle loro caratteristiche
+#### Droni Aerei
+   - [Iris](px4/Droni/Aria/iris.md)
+#### Droni Terrestri
+   -[Rover](px4/Droni/Terra/Rover.md)
+#### Droni Acquatici
+   -[BlueROV2](px4/Droni/Acqua/BlueROV2.md)
 
 
 
