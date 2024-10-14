@@ -36,9 +36,9 @@ Clicca sul nome dei droni per avere una panormaica più chiara delle loro caratt
 #### Droni Aerei
    - [Iris](px4/Droni/Aria/iris.md)
 #### Droni Terrestri
-   -[Rover](px4/Droni/Terra/Rover.md)
+   - [Rover](px4/Droni/Terra/Rover.md)
 #### Droni Acquatici
-   -[BlueROV2](px4/Droni/Acqua/BlueROV2.md)
+   - [BlueROV2](px4/Droni/Acqua/BlueROV2.md)
 
 
 
