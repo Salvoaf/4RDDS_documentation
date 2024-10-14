@@ -31,17 +31,33 @@ Px4 -> Drone : vehicleNamespace + "_camera/camera/image_raw/compressed" @ NULL :
 ```
 Incolla il codice sopra [qui](https://www.plantuml.com/).
 
-2. **Ciclo di Target Detection**: C'è un'altra iterazione del drone che si ripete ogni 750 ms. Questo ciclo parte chiamando la funzione `targetDetection()`, che avvia il processo descritto dal nuovo diagramma.
+2. **Obstacle Avoidance**: Presente nella funzione `bootstrap()` stessa, che avvia il processo descritto dal nuovo diagramma.
+
+- Quando vengono pubblicati nuovi dati, `scannerSubscriptionCallback` viene chiamata e salva l'immagine in `lastScan`.
+- Successivamente, quando `tick()` viene chiamato, elabora gli utlimi dati per verificare se ci sono ostacoli rilevati.
+
+```plantuml
+
+@startuml
+Px4 -> Drone : vehicleNamespace + "_rplidar/out" @ NULL : tick() # Px4 invia continuamente al drone i dati acquisiti dal sensore Lidar con obstacleAvoidanceModule.tick()  che processa l'ultima per la detection
+@enduml
+
+```
+Incolla il codice sopra [qui](https://www.plantuml.com/)
+
+3. **Ciclo di Target Detection**: C'è un'altra iterazione del drone che si ripete ogni 750 ms. Questo ciclo parte chiamando la funzione `targetDetection()`, che avvia il processo descritto dal nuovo diagramma.
 
 - Il modulo TargetDetection si sottoscrive al topic per ricevere le immagini.
 - Quando viene pubblicata una nuova immagine, `cameraSubscriptionCallback` viene chiamato e salva l'immagine in `lastCameraData`.
 - Successivamente, quando `tick()` viene chiamato, elabora l'ultima immagine disponibile (`lastCameraData`) per verificare se ci sono obiettivi rilevati.
 
 ```plantuml
-@startuml
+
 @startuml
 Px4 -> Drone : vehicleNamespace + "_camera/camera/image_raw/compressed" @ NULL : tick() # Px4 invia continuamente al drone le immagini acquisite dal sensore con tick() processa l'ultima per la detection
 @enduml
-@enduml
+
 ```
 Incolla il codice sopra [qui](https://www.plantuml.com/)
+
+
