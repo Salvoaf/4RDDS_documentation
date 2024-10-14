@@ -1,24 +1,6 @@
-### Metriche di simulazione
+# Lanciare una simulazione di missione
 
-- **Metriche online**:
-
-  - Contatore dei target trovati durante una missione di 10 minuti.
-  - Clock di sistema (300 ms) e tick di logging (10 sec).
-
-- **Metriche offline**:
-
-  1. Tabella delle posizioni dei droni (timestamp, ID drone, posizione, orientamento, velocità).
-  2. Tabella dei target trovati (timestamp, ID drone, posizione, orientamento, velocità).
-  3. Tabella delle collisioni (timestamp, ID droni, posizioni, orientamenti, velocità).
-
-### Script di log
-
-- **Conversione log in CSV**: Script per convertire i log in formato CSV (per analisi in Excel).
-- **Processing log**: Script per calcolare la distanza media tra i droni.
-
-### Lanciare una simulazione di missione e ottenere i log degli eventi
-
-1. Apri **PowerShell** e prepara **quattro tab** sulla home dell'utente `fourdds`:
+Apri **PowerShell** e prepara **quattro tab** sulla home dell'utente `fourdds`:
    - **Tab 1**: Avvia il processo di comunicazione tra PX4 e ROS2 con il comando:
 
      ```
@@ -71,7 +53,7 @@
        ```
        - **Genererà i file `geopings.csv` e `target_position.csv`.**
        - **Spostarli in una cartella dedicata per analisi successive.**
-### Modifica dei parametri di simulazione
+## Modifica dei parametri di simulazione
 
 Per modificare i parametri della simulazione:
 
@@ -85,13 +67,13 @@ source setup.bash
 colcon build --packages-select target_detection obstacle_avoidance base_station drone
 ```
 
-### Consigli per il lancio di simulazioni
+## Consigli per il lancio di simulazioni
 
 - Dopo aver modificato la logica di ROS2, potrebbe non essere necessario chiudere e riaprire Gazebo e il broker XRCE-DDS. Tuttavia, se i droni diventano lenti ad armarsi, conviene riavviare tutto da capo.
 
 - Per creare scenari personalizzati (.world), apri Gazebo con il comando `gazebo` e salva il mondo nella cartella `~/PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_gazebo_classic/worlds/`.
 
-### Architettura software della simulazione
+## Architettura software della simulazione
 
 Nella nuova architettura:
 
@@ -105,3 +87,22 @@ Nella nuova architettura:
 - **Un nodo ROS2** può sottoscrivere questo topic per ricevere i dati.
 
 ---
+
+## Metriche di simulazione
+
+- **Metriche online**:
+
+  - Contatore dei target trovati durante una missione di 10 minuti.
+  - Clock di sistema (300 ms) e tick di logging (10 sec).
+
+- **Metriche offline**:
+
+  1. Tabella delle posizioni dei droni (timestamp, ID drone, posizione, orientamento, velocità).
+  2. Tabella dei target trovati (timestamp, ID drone, posizione, orientamento, velocità).
+  3. Tabella delle collisioni (timestamp, ID droni, posizioni, orientamenti, velocità).
+
+## Script di log
+
+- **Conversione log in CSV**: Script per convertire i log in formato CSV (per analisi in Excel).
+- **Processing log**: Script per calcolare la distanza media tra i droni.
+
