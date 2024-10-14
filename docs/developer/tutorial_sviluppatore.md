@@ -69,8 +69,9 @@ Queste modifiche complessive ai moduli di controllo migliorano la capacità del 
 ROS2 si occupa della logica di un singolo drone e di altri agenti autonomi, come la base station, rendendo il codice il più modulare possibile. I package ROS2 presenti in `/home/fourdds/ros2_ws/src` che contengono logiche già pronte sono i seguenti:
 
 **Struttura dei package:**
+path = `/home/fourdds/ros2_ws/src/drone/src/Drone.cpp`
 
-- **drone:** Logica del singolo drone (armamento, decollo, flocking).
+- **drone:** Logica del singolo drone (armamento, decollo, flocking). 
 - **base_station:** Coordina lo sciame e gestisce il flocking.
 - **obstacle_avoidance:** Gestisce l'evitamento degli ostacoli.
 - **target_detection:** Rileva i target utilizzando tecniche come la trasformata di Hough.
