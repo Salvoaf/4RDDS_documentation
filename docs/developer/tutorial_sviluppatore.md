@@ -274,13 +274,13 @@ ROS2 si occupa della logica di un singolo drone e di altri agenti autonomi, come
   - **Percorso del file**: `/home/fourdds/PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_multiple_run.sh`.
   - **Modifica suggerita**: Aggiungi una funzione per generare coordinate casuali e passa queste coordinate ai droni durante il lancio.
   
-### [Guida per Estendere Gazebo con Sensori Dinamici](gazebo/sensori_dinamici.md)
+### Guida per Estendere Gazebo con Sensori Dinamici
 
-Questa guida ti aiuterà a estendere le funzionalità di Gazebo per gestire dinamicamente i sensori sui droni. Le modifiche descritte sono basate su esperienze reali e generalizzate per poter essere replicate su progetti simili.
+Questa guida ti aiuterà a estendere le funzionalità di Gazebo per gestire dinamicamente i sensori sui droni. Le modifiche descritte sono basate su esperienze reali e generalizzate per poter essere replicate su progetti simili. Clicca [qui](gazebo/sensori_dinamici.md) per approfondire.
 
-### [Guida per creare nuovi Worlds in Gazebo](gazebo/new_world.md)
+### Guida per creare nuovi Worlds in Gazebo
 
-Questa guida fornisce le istruzioni per creare e personalizzare i "worlds" in Gazebo, un simulatore 3D utilizzato nella piattaforma 4DDS.
+Questa guida fornisce le istruzioni per creare e personalizzare i "worlds" in Gazebo, un simulatore 3D utilizzato nella piattaforma 4DDS.Clicca [qui](gazebo/new_world.md) per approfondire.
 
 ## Problemi comuni
 
