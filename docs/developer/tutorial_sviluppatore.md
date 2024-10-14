@@ -2,7 +2,7 @@
 ## Indice dei contenuti
 1. [Componenti principali dell'ambiente 4DDS](#componenti-principali-dellambiente-4dds)
 2. [PX4](#px4)
-   -[Droni Testati](#droni-testati)
+   - [Droni Testati](#droni-testati)
 3. [ROS2](#ros2)
 4. [Gazebo](#gazebo)
    - [Droni casuali](#droni-casuali)
