@@ -1,24 +1,6 @@
 
 # Controller di Attitudine Geo per UAV
 
-## Indice
-
-1. [Introduzione](#introduzione)
-2. [Struttura del Controller](#struttura-del-controller)
-3. [Parametri di Controllo Adattativo](#parametri-di-controllo-adattativo)
-    - [Guadagni Iniziali](#guadagni-iniziali)
-    - [Tassi di Adattamento](#tassi-di-adattamento)
-    - [Limiti dei Guadagni](#limiti-dei-guadagni)
-4. [Calcolo dell'Intervallo di Tempo (`dt`)](#calcolo-dellintervallo-di-tempo-dt)
-5. [Calcolo dell'Errore di Attitudine](#calcolo-dellerrore-di-attitudine)
-6. [Adattamento dei Guadagni](#adattamento-dei-guadagni)
-    - [Formula per l'Aggiornamento dei Guadagni](#formula-per-laggiornamento-dei-guadagni)
-7. [Calcolo dei Torques](#calcolo-dei-torques)
-8. [Applicazione dei Comandi di Controllo](#applicazione-dei-comandi-di-controllo)
-9. [Conclusioni](#conclusioni)
-10. [Contatti](#contatti)
-
----
 
 ## Introduzione
 
