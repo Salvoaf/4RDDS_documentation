@@ -1,39 +1,7 @@
 
 # Controller di Posizione 6DoF per UAV
 
-## Indice
-
-1. [Introduzione](#introduzione)
-2. [Panoramica del Sistema](#panoramica-del-sistema)
-3. [Struttura del Controller](#struttura-del-controller)
-4. [Parametri di Controllo Adattativo](#parametri-di-controllo-adattativo)
-    - [Guadagni Iniziali](#guadagni-iniziali)
-    - [Tassi di Adattamento](#tassi-di-adattamento)
-    - [Limiti dei Guadagni](#limiti-dei-guadagni)
-5. [Soglie di Errore](#soglie-di-errore)
-6. [Calcolo dell'Intervallo di Tempo (`dt`)](#calcolo-dellintervallo-di-tempo-dt)
-    - [Cos'è `dt`?](#cosè-dt)
-    - [Calcolo di `dt` nel Codice](#calcolo-di-dt-nel-codice)
-    - [Importanza di `dt`](#importanza-di-dt)
-7. [Calcolo degli Errori](#calcolo-degli-errori)
-    - [Errori di Posizione](#errori-di-posizione)
-    - [Errori di Velocità](#errori-di-velocità)
-8. [Adattamento dei Guadagni](#adattamento-dei-guadagni)
-    - [Adattamento di `ZP_GAIN`](#adattamento-di-zp_gain)
-    - [Adattamento di `VP_GAIN`](#adattamento-di-vp_gain)
-9. [Calcolo della Spinta](#calcolo-della-spinta)
-10. [Gestione della Stabilità](#gestione-della-stabilità)
-    - [Verifica delle Soglie di Errore](#verifica-delle-soglie-di-errore)
-    - [Aggiornamento dei Setpoint](#aggiornamento-dei-setpoint)
-11. [Logging e Debug](#logging-e-debug)
-12. [Pubblicazione del Setpoint di Spinta](#pubblicazione-del-setpoint-di-spinta)
-13. [Constrain della Spinta](#constrain-della-spinta)
-14. [Considerazioni sulla Sintonizzazione](#considerazioni-sulla-sintonizzazione)
-15. [Conclusioni](#conclusioni)
-16. [Licenza](#licenza)
-17. [Contatti](#contatti)
-18. [Riferimenti](#riferimenti)
-
+## Funzione void UUVPOSControl::pose_controller_6dof() 
 ---
 
 ## Introduzione
