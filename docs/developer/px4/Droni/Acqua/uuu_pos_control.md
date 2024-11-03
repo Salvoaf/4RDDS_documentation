@@ -1,5 +1,5 @@
 
-# Controller di Posizione 6DoF per UAV (void UUVPOSControl::pose_controller_6dof())
+# Controller di Posizione 6DoF per UAV
 
 
 ## Introduzione
