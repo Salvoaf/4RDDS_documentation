@@ -53,7 +53,7 @@ Il modulo di controllo per il rover è stato modificato per accettare setpoint d
 
 Il modulo di controllo della velocità e della profondità per il BlueROV2 è stato completamente riscritto. Questo aggiornamento garantisce una maggiore precisione nel controllo del movimento del veicolo subacqueo in termini di velocità e profondità.
 
-- **Controllo dell'attitudine**: Il controllo di roll, pitch e yaw avviene nel file [`uuv_att_control.cpp`]((px4/Droni/Acqua/uuv_att_control.md), garantendo una gestione ottimale della stabilità e dell'orientamento del veicolo mentre opera sott'acqua.
+- **Controllo dell'attitudine**: Il controllo di roll, pitch e yaw avviene nel file [`uuv_att_control.cpp`](px4/Droni/Acqua/uuv_att_control.md), garantendo una gestione ottimale della stabilità e dell'orientamento del veicolo mentre opera sott'acqua.
 
 - **Controllo della velocità e della profondità**:  
   La gestione della velocità e della profondità è implementata nel file [`uuv_pos_control.cpp`](px4/Droni/Acqua/uuu_pos_control.md). Questa riscrittura del modulo permette al BlueROV2 di muoversi con precisione lungo la coordinata Z, dove le coordinate NED (North-East-Down) restano il riferimento. Nella configurazione NED, le coordinate Z positive corrispondono a una maggiore profondità rispetto alla posizione di spawn del veicolo.
