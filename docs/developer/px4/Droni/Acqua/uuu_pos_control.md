@@ -1,8 +1,6 @@
 
-# Controller di Posizione 6DoF per UAV
+# Controller di Posizione 6DoF per UAV (void UUVPOSControl::pose_controller_6dof())
 
-## Funzione void UUVPOSControl::pose_controller_6dof() 
----
 
 ## Introduzione
 
@@ -103,3 +101,70 @@ if (dt <= 0.0f || dt > 1.0f) {
     dt = 0.01f; // Valore di default in caso di intervallo non valido
 }
 ```
+
+## Calcolo degli Errori
+
+### Errori di Posizione
+
+Gli errori di posizione rappresentano la differenza tra la posizione desiderata e la posizione attuale del drone lungo gli assi X, Y e Z.
+
+```cpp
+float x_error = desired_x - _vehicle_local_position.x;
+float y_error = desired_y - _vehicle_local_position.y;
+float z_error = desired_z - _vehicle_local_position.z;
+```
+
+### Errori di Velocità
+
+Gli errori di velocità rappresentano la differenza tra la velocità desiderata e la velocità attuale del drone lungo gli assi X, Y e Z.
+
+```cpp
+float vx_error = desired_vx - _vehicle_local_position.vx;
+float vy_error = desired_vy - _vehicle_local_position.vy;
+float vz_error = desired_vz - _vehicle_local_position.vz;
+```
+
+## Adattamento dei Guadagni
+
+Il controller utilizza una strategia di controllo adattativo per aggiornare i guadagni in base agli errori correnti di posizione e velocità. Questo permette al sistema di rispondere dinamicamente alle variazioni degli errori, migliorando la stabilità e l'efficacia del controllo.
+
+### Formula per l'Aggiornamento dei Guadagni
+
+L'aggiornamento dei guadagni `ZP_GAIN` e `VP_GAIN` avviene in base alla seguente formula:
+
+- **Aggiornamento di `ZP_GAIN`:**
+  ```cpp
+  ZP_GAIN += gamma_z * fabsf(z_error) * dt;
+  ZP_GAIN = math::constrain(ZP_GAIN, ZP_GAIN_MIN, ZP_GAIN_MAX);
+  ```
+
+- **Aggiornamento di `VP_GAIN`:**
+  ```cpp
+  float horizontal_velocity_error = sqrtf(vx_error * vx_error + vy_error * vy_error);
+  VP_GAIN += gamma_v * horizontal_velocity_error * dt;
+  VP_GAIN = math::constrain(VP_GAIN, VP_GAIN_MIN, VP_GAIN_MAX);
+  ```
+
+Dove:
+- `gamma_z` e `gamma_v` sono i tassi di adattamento.
+- `fabsf(z_error)` e `horizontal_velocity_error` rappresentano rispettivamente l'errore di posizione assoluto lungo l'asse Z e la magnitudine dell'errore di velocità orizzontale.
+- `dt` è l'intervallo di tempo tra le iterazioni.
+
+## Calcolo della Spinta
+
+Una volta aggiornati i guadagni, il controller calcola la spinta necessaria lungo ciascun asse utilizzando i guadagni adattativi.
+
+- **Asse Z**
+  ```cpp
+  thrust(2) = ZP_GAIN * z_error;
+  ```
+  
+- **Assi X e Y**
+  ```cpp
+  thrust(0) = VP_GAIN * x_error;
+  thrust(1) = VP_GAIN * y_error;
+  ```
+
+**Funzione:**
+
+La spinta calcolata determina la forza applicata lungo ciascun asse per correggere gli errori di posizione e velocità, garantendo che il drone si muova verso i setpoint desiderati in modo stabile ed efficiente.
