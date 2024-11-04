@@ -43,8 +43,8 @@ interpretano le informazioni e calcolano i comandi per regolare la velocità e l
 Quando il modulo ROS2 invia i messaggi `TrajectorySetPoint`, i controllori PX4, basandosi sul tipo di drone e sui parametri configurati,
 elaborano i comandi appropriati per regolare la velocità e la traiettoria del drone, inviando i comandi necessari affinché il drone raggiunga la posizione e velocità desiderate.
 
-I controllori si trovano nel path **/home/fourdds/PX4-Autopilot/src/modules** e si possono vedere quali moduli sono caricati all'avvio per lo specifico drone 
-nel path **/home/fourdds/PX4-Autopilot/build/px4_sitl_default/etc** all'interno del file **rc.<nome_drone>_apps**. 
+I controllori si trovano nel path `/home/fourdds/PX4-Autopilot/src/modules` e si possono vedere quali moduli sono caricati all'avvio per lo specifico drone 
+nel path `/home/fourdds/PX4-Autopilot/build/px4_sitl_default/etc` all'interno del file `rc.<nome_drone>_apps`. 
 All'interno di questo file saranno visibili i moduli che saranno avviati alla creazione dello specifico drone, tra cui i controllori che gestiranno il volo dello specifico drone.
 
 I parametri sono contenuti all'interno della cartella del controllore nel file `<nome controllore>_params.c` e rappresentano limiti, guadagni o altre grandezze utili per assegnare correttamente 
