@@ -21,6 +21,72 @@
 
    - Modifiche per gestire il LIDAR e la telecamera dinamicamente, utilizzando più sensori dello stesso tipo.
 ## Guida Completa al Sistema di Controllo e Simulazione di Droni con PX4, ROS2 e Gazebo ##
+
+### Descrizione del Sistema
+
+Il sistema è composto da tre moduli che lavorano insieme per controllare e coordinare le operazioni di volo di un drone. 
+Ogni modulo svolge una funzione specifica per garantire il corretto funzionamento e il controllo del drone durante le missioni. 
+I moduli principali sono:
+
+- **PX4-Autopilot**: Gestisce l'ambiente di simulazione Gazebo e funzionalità avanzate come i controllori dei droni.
+- **ROS2**: Gestisce il codice di alto livello del drone e funzionalità avanzate utili per lo svolgimento delle missioni.
+- **WS**: Contiene vari plugin e strumenti utili per l’integrazione con Gazebo.
+
+## Moduli Principali
+
+#### Modulo PX4-Autopilot
+
+Il modulo **PX4-Autopilot** include l’ambiente di simulazione Gazebo e funzionalità avanzate per la gestione del sistema, come i controllori dei droni. 
+PX4 gestisce le dinamiche di volo e la stabilità, consentendo simulazioni realistiche. I controllori PX4 ricevono messaggi come `TrajectorySetPoint`, 
+interpretano le informazioni e calcolano i comandi per regolare la velocità e la traiettoria del drone.
+
+Quando il modulo ROS2 invia i messaggi `TrajectorySetPoint`, i controllori PX4, basandosi sul tipo di drone e sui parametri configurati,
+elaborano i comandi appropriati per regolare la velocità e la traiettoria del drone, inviando i comandi necessari affinché il drone raggiunga la posizione e velocità desiderate.
+
+I controllori si trovano nel path **/home/fourdds/PX4-Autopilot/src/modules** e si possono vedere quali moduli sono caricati all'avvio per lo specifico drone 
+nel path **/home/fourdds/PX4-Autopilot/build/px4_sitl_default/etc** all'interno del file **rc.<nome_drone>_apps**. 
+All'interno di questo file saranno visibili i moduli che saranno avviati alla creazione dello specifico drone, tra cui i controllori che gestiranno il volo dello specifico drone.
+
+I parametri sono contenuti all'interno della cartella del controllore nel file `<nome controllore>_params.c` e rappresentano limiti, guadagni o altre grandezze utili per assegnare correttamente 
+le forze che devono essere applicate alle varie componenti del sistema. I parametri sono caricati all'interno del file header `<nome controllore>_params.hpp` e sono poi utilizzati 
+all'interno del controllore, ad esempio, per limitare la velocità che può essere impostata, così da mantennere il veicolo stabile. 
+
+Inoltre, PX4 è strettamente integrato con Gazebo, per simulare in modo accurato le risposte del drone ai comandi di volo, 
+tenendo conto di fattori ambientali e dinamiche del veicolo.
+
+
+
+#### Modulo ROS2
+
+Il modulo **ROS2** contiene le istruzioni di volo e altre funzionalità fondamentali per il drone, come la logica di flocking e la rilevazione di target. 
+I particolar modo, il file `Drone.cpp` all'interno di questo modulo gestisce la logica di flocking e genera messaggi `TrajectorySetPoint`, 
+in cui specifica la **posizione** e la **velocità** desiderate per il drone. Questi messaggi, pubblicati in tempo reale, rappresentano la traiettoria target e le velocità desiderate per il drone.
+
+- **Posizione**: utilizzata per impostare una certa altitudine di volo per droni volanti come "iris" o per droni sottomarini come "uuv_bluerovv2_heavy.
+- **Velocità**: impostata su tutti e tre gli assi di movimento per definire una velocità precisa nello spazio 3D.
+
+
+#### Modulo WS
+
+Il modulo **WS** è un workspace ROS2 che contiene vari plugin e risorse essenziali per l’interfaccia con Gazebo, tra cui:
+
+- **Plugin dei sensori**: come il plugin GPS e il plugin Lidar, che permettono al drone di raccogliere dati simulati durante la missione.
+- **Messaggi personalizzati**: definiti per supportare le esigenze del progetto e facilitare la comunicazione tra i vari moduli.
+- **Strumenti di utilità**: che supportano l’integrazione e il controllo del drone durante le simulazioni.
+
+Questo modulo consente una simulazione accurata e realistica, garantendo che i dati sensoriali siano rappresentati correttamente 
+e che il drone risponda adeguatamente all’ambiente circostante durante i test.
+
+
+### Flusso di Controllo
+
+1. **Pubblicazione dei TrajectorySetPoint**: Il modulo ROS2 dal file `Drone.cpp` pubblica messaggi di tipo `TrajectorySetPoint` contenenti informazioni sulla posizione e velocità target.
+2. **Ricezione dei Comandi dal Modulo PX4**: I controllori, specifici per ogni veicolo, che sono contenuti dentro PX4 ricevono questi `TrajectorySetPoint` e, 
+in base al tipo di drone, elaborano il comando appropriato affinché il drone raggiunga i parametri di velocità e posizione desiderati.
+3. **Regolazione della Velocità e della Posizione**: I controllori PX4 inviano i comandi al drone per stabilire la velocità e la posizione specificate, 
+garantendo che il drone segua la traiettoria impostata.
+
+
 ## PX4
 
 ### Droni Testati
