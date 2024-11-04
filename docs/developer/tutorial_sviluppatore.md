@@ -1,7 +1,7 @@
 # Tutorial per lo sviluppatore
 ## Indice dei contenuti
 1. [Componenti principali dell'ambiente 4DDS](#componenti-principali-dellambiente-4dds)
-2. [Guida Completa al Sistema di Controllo e Simulazione di Droni con PX4, ROS2 e Gazebo](#guida_completa_al_sistema_di_controllo_e_simulazione_di_droni_con_px4_ros2_e_gazebo)
+2. [Guida Completa al Sistema di Controllo e Simulazione di Droni con PX4, ROS2 e Gazebo](#guida-completa-al-sistema-di-controllo-e-simulazione-di-droni-con-px4-ros2-e-gazebo)
 3. [PX4](#px4)
    - [Droni Testati](#droni-testati)
 4. [ROS2](#ros2)
