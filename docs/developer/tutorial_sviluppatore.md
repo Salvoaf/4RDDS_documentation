@@ -9,6 +9,7 @@
    - [Droni casuali](#droni-casuali)
    - [Guida per Estendere Gazebo con Sensori Dinamici](#guida-per-estendere-gazebo-con-sensori-dinamici)
    - [Guida per creare nuovi Worlds in Gazebo](#guida-per-creare-nuovi-worlds-in-gazebo)
+   - [Guida Completa alla Creazione di un Nuovo Oggetto in Gazebo](#guida-completa-alla-creazione-di-un-nuovo-oggetto-in-gazebo)
 6. [Problemi comuni](#problemi-comuni)
  
 ## Componenti principali dell'ambiente 4DDS
@@ -212,6 +213,9 @@ Clicca [qui](gazebo/sensori_dinamici.md) per approfondire.
 Questa guida fornisce le istruzioni per creare e personalizzare i "worlds" in Gazebo, un simulatore 3D utilizzato nella piattaforma 4DDS. 
 Clicca [qui](gazebo/new_world.md) per approfondire.
 
+### Guida Completa alla Creazione di un Nuovo Oggetto in Gazebo
+Questa guida fornisce una panoramica dettagliata su come creare e inserire un nuovo oggetto (target) in Gazebo, esplorando non solo i passaggi pratici ma anche comprendendo i file e le strutture sottostanti. Inoltre, vedremo come gestire un target con proprietà gassose e come utilizzare immagini per creare materiali e texture personalizzati.
+Clicca [qui](gazebo/guida_creazione_oggetto_gazebo.md) per approfondire.
 ## Problemi comuni
 
 - **Se i sensori non vengono caricati correttamente:**
