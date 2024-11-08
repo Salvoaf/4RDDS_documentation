@@ -89,8 +89,8 @@ garantendo che il drone segua la traiettoria impostata.
 
 
 ## PX4
-
 ### Droni Testati
+Per far partire i controllori di un drone modificare il seguente file `/home/fourdds/PX4-Autopilot/build/px4_sitl_default/etc/init.d/rc.nomeDelDrone_apps`.
 Clicca sul nome dei droni per avere una panormaica più chiara delle loro caratteristiche.
 #### Droni Aerei
    - [Iris](px4/Droni/Aria/Iris.md)
