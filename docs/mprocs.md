@@ -80,39 +80,48 @@ To customize `mprocs`, create a configuration file in the `.config` directory:
    ```
 
 3. Add this configuration:
-   ```yaml
 ```yaml
 procs:
-  unified_window:
+  open mprocs.yaml:
+    shell: "vi ~/.config/mprocs/mprocs.yaml"
+    autostart: false
+
+  PX4 Update:
     shell: |
-      bash -c "
-      echo 'Apertura mprocs.yaml';
-      vi ~/.config/mprocs/mprocs.yaml;
+      bash -c "cd PX4-Autopilot && make px4_sitl"
+    autostart: false
+ ROS2 Update:
+    shell: |
+      bash -c "cd ros2_ws && source setup.bash && rm -rf log_* && colcon build"
+    autostart: false
 
-      echo 'Esecuzione PX4 Update';
-      cd PX4-Autopilot && make px4_sitl;
+  ROS WS Update:
+    shell: |
+      bash -c "cd ws && source setup.bash && colcon build --symlink-install"
+    autostart: false
 
-      echo 'Esecuzione ROS2 Update';
-      cd ~/ros2_ws && source setup.bash && rm -rf log_* && colcon build;
+  MicroXRCEAgent:
+    shell: "cd && MicroXRCEAgent udp4 -p 8888"
+    autostart: false
 
-      echo 'Esecuzione ROS WS Update';
-      cd ~/ws && source setup.bash && colcon build --symlink-install;
+  PX4-SITL:
+    shell: |
+      bash -c "cd /home/fourdds/ws && source setup.bash && cd && ./PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_multiple_run.sh -n 3 -m iris -t 2 -w find_targets"
+    autostart: false
 
-      echo 'Esecuzione MicroXRCEAgent';
-      cd && MicroXRCEAgent udp4 -p 8888;
+  ROS2:
+    shell: |
+      bash -c "cd && cd ros2_ws && source setup.bash && bash run.sh -n 3 -m iris"
+    autostart: false
 
-      echo 'Esecuzione PX4-SITL';
-      cd ~/ws && source setup.bash && cd && ./PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_multiple_run.sh -n 3 -m iris -t 2 -w find_targets;
+  log recorder:
+    shell: |
+      bash -c "cd && cd ros2_ws && source setup.bash && bash register.bash"
+    autostart: false
 
-      echo 'Esecuzione ROS2';
-      cd ~/ros2_ws && source setup.bash && bash run.sh -n 3 -m iris;
-
-      echo 'Avvio log recorder';
-      cd ~/ros2_ws && source setup.bash && bash register.bash;
-
-      echo 'Conversione dei log in CSV';
-      cd ~/ros2_ws && source setup.bash && ros2 run analysis ConvertToCSV $(ls log_*/log_*_0.db3) && rm -rf log_*;
-      "
+  log_to_csv:
+    shell: |
+      bash -c "cd && cd ros2_ws && source setup.bash && ros2 run analysis ConvertToCSV $(ls log_*/log_*_0.db3) && rm -rf log_*"
     autostart: false
 
    ```
