@@ -76,7 +76,7 @@ To customize `mprocs`, create a configuration file in the `.config` directory:
 
 2. Create the `mprocs.yaml` file:
    ```bash
-   gedit ~/.config/mprocs/mprocs.yaml
+   nano ~/.config/mprocs/mprocs.yaml
    ```
 
 3. Add this configuration:
