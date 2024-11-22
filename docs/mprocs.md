@@ -95,31 +95,31 @@ procs:
       bash -c "cd ros2_ws && source setup.bash && rm -rf log_* && colcon build"
     autostart: false
 
-  ROS WS Update:
+ROS WS Update:
     shell: |
       bash -c "cd ws && source setup.bash && colcon build --symlink-install"
     autostart: false
 
-  MicroXRCEAgent:
+MicroXRCEAgent:
     shell: "cd && MicroXRCEAgent udp4 -p 8888"
     autostart: false
 
-  PX4-SITL:
+PX4-SITL:
     shell: |
       bash -c "cd /home/fourdds/ws && source setup.bash && cd && ./PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_multiple_run.sh -n 3 -m iris -t 2 -w find_targets"
     autostart: false
 
-  ROS2:
+ROS2:
     shell: |
       bash -c "cd && cd ros2_ws && source setup.bash && bash run.sh -n 3 -m iris"
     autostart: false
 
-  log recorder:
+log recorder:
     shell: |
       bash -c "cd && cd ros2_ws && source setup.bash && bash register.bash"
     autostart: false
 
-  log_to_csv:
+log_to_csv:
     shell: |
       bash -c "cd && cd ros2_ws && source setup.bash && ros2 run analysis ConvertToCSV $(ls log_*/log_*_0.db3) && rm -rf log_*"
     autostart: false
