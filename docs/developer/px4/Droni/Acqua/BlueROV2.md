@@ -5,16 +5,24 @@
 1. **IMU (Inertial Measurement Unit)**: 
    - Misura l'accelerazione e la rotazione del drone.
    - Configurato tramite il plugin `gazebo_imu_plugin`.
+   - 
+2. **LiDAR**: 
+   - Scanner laser per la mappatura e rilevamento ostacoli.
+   - Definito tramite il modello `4dds_rplidar`.
 
-2. **GPS**: 
+3. **Fotocamera FPV (First-Person View)**: 
+   - Utilizzata per la visione in prima persona.
+   - Definita tramite il modello `fpv_cam`.
+
+4. **GPS**: 
    - Utilizzato per ottenere la posizione locale.
    - Definito tramite l'inclusione del modello GPS.
 
-3. **Magnetometro**: 
+5. **Magnetometro**: 
    - Misura il campo magnetico per determinare l'orientamento rispetto al campo magnetico terrestre.
    - Configurato tramite il plugin `magnetometer_plugin`.
 
-4. **Barometro**: 
+6. **Barometro**: 
    - Misura la pressione atmosferica per stimare l'altitudine.
    - Configurato tramite il plugin `barometer_plugin`.
 
